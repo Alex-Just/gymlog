@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link href="css/day.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&amp;subset=latin,cyrillic">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Left sidebar -->
+        <div class="col-md-2 sidebar-container">
+            <div class="row">
+                <div class="col-md-12 sidebar">
+                    <div class="sidebar__top">
+                        <h1 class="sidebar__header text-center">GymLog</h1>
+                        <div class="">
+                            <a href="#">
+                                <img class="sidebar__avatar" src="images/avatar.png" alt="Avatar">
+                            </a>
+                        </div>
+
+                        <div class="sidebar__username text-center">Ivan Petrov</div>
+                    </div>
+
+                    <div class="col-md-12 sidebar__menu-container">
+                        <ul class="sidebar__menu">
+                            <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="#">
+                                    <span class="glyphicon glyphicon-book"></span> My Log
+                                </a>
+                            </li>
+                            <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="#">
+                                    <span class="glyphicon glyphicon-user"></span> Profile
+                                </a>
+                            </li>
+                            <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="#">
+                                    <span class="glyphicon glyphicon-th-large"></span> Programs
+                                </a>
+                            </li>
+                            <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="#">
+                                    <span class="glyphicon glyphicon-plus"></span> a program
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main center area -->
+        <div class="col-md-8">
+            <div class="nav-container">
+                <h3><span class="glyphicon glyphicon-th-large"></span>
+                    <a id="dropdownMenu1" href="#" data-toggle="dropdown" class="nav-dropdown dropdown">
+                        Program: My awesome standart program #1
+                    </a>
+
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <a href="#" class="nav-dropdown">
+                        Day: #1
+                    </a>
+                </h3>
+
+                <div class="material-card dropdown-menu__contents">
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li class="disabled"><a href="#">My awesome standart program #1</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Program #2: Legs</a></li>
+                        <li><a href="#">Program #3: Back</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <table class="table table-hover main-table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Exercise</th>
+                    <th>Sets (planned)</th>
+                    <th>Video</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <span class="ex-name">Seated Stdaight-Bar Curl Superset</span>
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Remove
+                        </a>
+                    </td>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <td>Set 1: <span class="main-table__input-link">12 reps</span> | <span
+                                        class="main-table__input-link">6 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>Set 2: <span class="main-table__input-link">10 reps</span> | <span
+                                        class="main-table__input-link">6 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>Set 3: <span class="main-table__input-link">10 reps</span> | <span
+                                        class="main-table__input-link">5 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="ex-controls"><span class="glyphicon glyphicon-plus"
+                                    ></span> add new set</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <iframe width="100" height="100" src="https://www.youtube.com/embed/dBogBAjK6rk?showinfo=0"
+                                allowfullscreen></iframe>
+                    </td>
+                    <td>
+                        ... blah blah blah ...
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <span class="ex-name">Seated Stdaight-Bar Curl Superset</span>
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Remove
+                        </a>
+                    </td>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <td>Set 1: <span class="main-table__input-link">12 reps</span> | <span
+                                        class="main-table__input-link">6 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>Set 2: <span class="main-table__input-link">10 reps</span> | <span
+                                        class="main-table__input-link">6 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>Set 3: <span class="main-table__input-link">10 reps</span> | <span
+                                        class="main-table__input-link">5 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="ex-controls"><span class="glyphicon glyphicon-plus"
+                                    ></span> add new set</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <iframe width="100" height="100" src="https://www.youtube.com/embed/dBogBAjK6rk?showinfo=0"
+                                allowfullscreen></iframe>
+                    </td>
+                    <td>
+                        ... blah blah blah ...
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <span class="ex-name">Seated Stdaight-Bar Curl Superset</span>
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Remove
+                        </a>
+                    </td>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <td>Set 1: <span class="main-table__input-link">12 reps</span> | <span
+                                        class="main-table__input-link">6 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Set 2: <span class="main-table__input-link">10 reps</span> |
+                                    <span class="main-table__input-link hide">6 kg</span>
+                                    <input type="text" class="form-control main-table__input" value="6" title="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Set 3: <span class="main-table__input-link">10 reps</span> | <span
+                                        class="main-table__input-link">5 kg</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="ex-controls">
+                                        <span class="glyphicon glyphicon-plus"></span> add new set
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <iframe width="100" height="100" src="https://www.youtube.com/embed/dBogBAjK6rk?showinfo=0"
+                                allowfullscreen></iframe>
+                    </td>
+                    <td>
+                        ... blah blah blah ...
+                        <a href="#" class="ex-controls">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Right sidebar -->
+        <div class="col-md-2 layoutBox nano">
+            <div>
+                <span class="right-sidebar">
+                    <b class="right-sidebar__header">
+                        <span class="glyphicon glyphicon-calendar"></span> Calendar
+                    </b>
+                </span>
+
+                <div class="right-sidebar__empty-block">
+                    <i class="right-sidebar__empty-text"></i> Empty for now
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
