@@ -1,0 +1,128 @@
+.main-table {
+  background-color: white;
+}
+
+.main-table .table {
+  background-color: inherit;
+}
+
+.main-table > tbody > tr {
+  overflow: scroll;
+  width: 100%;
+
+  /*border: 1px solid #e1e8ed;*/
+  background-clip: padding-box;
+  padding: 0 10px 6px;
+
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.14), 0 2px -1px -10px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition-duration: .218s;
+  transition-duration: .218s;
+  -webkit-transition-property: background, opacity, -webkit-box-shadow, -webkit-transform;
+  transition-property: background, opacity, box-shadow, transform;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.main-table > tbody > tr:hover {
+  z-index: 1000;
+}
+
+.main-table > tbody > tr:hover .ex-controls {
+  visibility: visible;
+}
+
+.table .table tr, .main-table .table td {
+  border: none !important;
+}
+
+.main-table > tbody > tr {
+  border-bottom: 4px solid #eef1f4;
+}
+
+.main-table > thead {
+  background-color: rgb(232, 235, 239);
+}
+
+.input-link {
+  border-bottom: 1px dotted;
+  cursor: pointer;
+}
+
+.input {
+  display: inline-block;
+  width: 60px;
+  font-size: 14px;
+  text-align: center;
+  padding: 0 2px;
+  height: 30px;
+}
+
+.ex-name {
+  display: block;
+  font-weight: bold;
+}
+
+.ex-controls {
+  display: block;
+  visibility: hidden;
+
+  text-transform: uppercase;
+  min-width: 95px;
+  font-size: 0.8em;
+  margin: 4px 0 0 0;
+}
+
+.nav-dropdown {
+  border-bottom: 1px dotted;
+  cursor: pointer;
+  position: relative;
+  bottom: 3px;
+}
+
+.nav-dropdown:hover, .nav-dropdown:focus {
+  text-decoration: none;
+}
+
+.dropdown-menu__contents {
+  display: none;
+}
+
+.dropdown-menu {
+  display: block;
+}
+
+.nav-container:hover .dropdown-menu__contents, .dropdown-menu__contents:hover .dropdown-menu__contents:hover {
+  display: block;
+  position: absolute;
+
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.14), 0 2px -1px -10px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition-duration: .218s;
+  transition-duration: .218s;
+  -webkit-transition-property: background, opacity, -webkit-box-shadow, -webkit-transform;
+  transition-property: background, opacity, box-shadow, transform;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+
+  z-index: 1000;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 3px 6px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 3px 6px 0;
+}
+
+.nav-container {
+  position: relative;
+}
+
+.main-table > tbody > tr > td:nth-child(4) {
+  width: 120px;
+}
+
+.table {
+  margin-bottom: 0;
+}

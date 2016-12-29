@@ -1,0 +1,84 @@
+.container {
+  background-color: #4d6e84
+}
+
+.component {
+  position: static;
+  min-height: 100vh;
+  flex-basis: 240px;
+  -webkit-flex-basis: 240px;
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+}
+
+.top {
+  padding: 10px;
+}
+
+.header {
+  color: white;
+  margin-top: 5px;
+
+  width: 100%;
+  height: 25px;
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, .3);
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  background-size: cover;
+}
+
+.username {
+  color: white;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.menu-container {
+  padding: 0;
+}
+
+.menu {
+  list-style: none;
+  color: white;
+  margin: 15px 0 0;
+  padding: 0;
+}
+
+.menu-link {
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: 15px;
+  color: #a7b3cb !important;
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px 0 20px;
+  line-height: 40px;
+}
+
+.menu-link:hover {
+  background-color: #47576b;
+  color: white;
+  text-decoration: none;
+}
+
+.menu-link .glyphicon {
+  padding-right: 6px;
+}
+
+.menu-item {
+  padding: 3px 0;
+  border-bottom: 1px solid #485265;
+}

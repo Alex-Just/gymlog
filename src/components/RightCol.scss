@@ -1,0 +1,39 @@
+.component {
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 1.45rem;
+  border-bottom: 1px solid #d2d2d2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  color: #939393;
+}
+
+.empty-block {
+  opacity: 0.3;
+  margin-top: 70px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.7em
+}
+
+.header {
+  font-weight: normal;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  top: 9px;
+  background: #eef1f4;
+}
+
+.empty-text {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

@@ -1,0 +1,21 @@
+# Local development dependencies go here
+-r base.txt
+coverage
+django-coverage-plugin
+Sphinx
+django-extensions
+Werkzeug
+django-test-plus
+factory_boy
+
+django-debug-toolbar
+
+# improved REPL
+ipdb
+
+pytest-django
+pytest-sugar
+
+behave-django
+selenium
+django-webpack-loader

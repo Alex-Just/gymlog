@@ -1,0 +1,40 @@
+{
+  "presets": [
+    "react",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "stage-0",
+    "airbnb"
+  ],
+  "env": {
+    "local": {
+      "presets": [
+        "react-hmre"
+      ],
+      "plugins": [
+        "react-hot-loader/babel",
+        [
+          "react-css-modules",
+          {
+            "generateScopedName": "[name]__[local]___[hash:base64:5]"
+          }
+        ]
+      ]
+    },
+    "production": {},
+    "test": {
+      "plugins": [
+        [
+          "__coverage__",
+          {
+            "ignore": "**/__tests__/**"
+          }
+        ]
+      ]
+    }
+  }
+}
