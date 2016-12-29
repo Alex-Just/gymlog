@@ -1,4 +1,13 @@
 sudo: true
+
+services: postgresql
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE="config.settings.test"
+  - PYTHONPATH="/home/travis/build/Alex-Just/gymlog"
+  - PIP_USE_MIRRORS=true
+
+
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
@@ -10,3 +19,4 @@ language: python
 python:
 - "3.5"
 
+script: python3 manage.py test
