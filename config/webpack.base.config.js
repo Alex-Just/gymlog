@@ -14,7 +14,7 @@ module.exports = (opts) => {
     }),
     // Promise and fetch polyfills
     new webpack.ProvidePlugin({
-      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+      Promise: 'imports-loader?this=>global!exports-loader?global.Promise!es6-promise',
     }),
   ];
 
@@ -88,7 +88,6 @@ module.exports = (opts) => {
           include: path.resolve(PROJECT_ROOT, 'src'),
           loaders: [
             'babel-loader',
-            'webpack-module-hot-accept',
           ],
         },
 

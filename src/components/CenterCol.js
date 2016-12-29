@@ -14,7 +14,7 @@ export default class CenterCol extends Component {
 
             &nbsp;<span className="glyphicon glyphicon-chevron-right"/>
             <a href="#" styleName="nav-dropdown">
-              Day: #21
+              Day: #1
             </a>
           </h3>
 

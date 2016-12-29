@@ -18,7 +18,7 @@ module.exports = function(config) {
         {
           test: /\.js$/,
           exclude: /\/node_modules\//,
-          loader: 'babel',
+          loader: 'babel-loader',
           query: {
             presets: ['airbnb'],
           },

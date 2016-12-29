@@ -13,7 +13,7 @@ class Counter extends Component {
 
     return (
       <div className="counter">
-        <h1>Counter1: {value}</h1>
+        <h1>Counter: {value}</h1>
         <button onClick={incrementCounter}>+</button>
         <button onClick={decrementCounter}>-</button>
         <hr />

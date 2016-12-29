@@ -78,3 +78,5 @@ staticfiles/
 src/dist
 webpack-stats.json
 webpack-stats-production.json
+/build/
+/.cache/
