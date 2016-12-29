@@ -107,7 +107,7 @@ Redux Dev Tools
 ---------------
 Redux dev tools allows you to debug redux. See the [redux-devtools github repository](https://github.com/gaearon/redux-devtools) for more info.
 
-You can add more [monitors](https://github.com/gaearon/redux-devtools/blob/a21905cbdeb22fc67c3f16caa8752cb5b4133b32/README.md#custom-monitors) by installing the monitors package and adding the component inside the `DockMonitor` component found in [`./src/containers/DevTools.js`](containers/DevTools.js).
+You can add more [monitors](https://github.com/gaearon/redux-devtools/blob/a21905cbdeb22fc67c3f16caa8752cb5b4133b32/README.md#custom-monitors) by installing the monitors package and adding the component inside the `DockMonitor` component found in [`./src/containers/DevTools.js`](src/containers/DevTools.js).
 
 ### Controls
 The controls can be configured by editing the `DockMonitor` component's attributes. Currently the controls are:
@@ -123,4 +123,4 @@ The controls can be configured by editing the `DockMonitor` component's attribut
 [expect]: https://github.com/mjackson/expect
 [cookiecutter-webpack]: https://github.com/goldhand/cookiecutter-webpack
 
-[test-dir]: /src/__tests__/
+[test-dir]: /src/__tests__
