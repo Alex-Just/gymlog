@@ -8,6 +8,7 @@ module.exports = (opts) => {
 
   const config = baseConfig(opts);
 
+  // Add `webpack-module-hot-accept` loader to *.jsx? loaders
   config.module.loaders[0].loaders = [config.module.loaders[0].loaders[0], 'webpack-module-hot-accept'];
 
   return {
