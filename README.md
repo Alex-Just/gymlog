@@ -12,7 +12,7 @@ Back-end: [![Build Status](https://travis-ci.org/Alex-Just/gymlog.svg?branch=dev
 Technology | Path
 --- | ---
 **Front-end** | 
-React + Redux + CSS Modules + Bootstrap3 | [src/](src)
+React + Redux + CSS Modules + Bootstrap3 + SASS | [src/](src)
 Webpack v2 | [config](config)/webpack.[env].config.js
 Tests: Karma/Mocha/Expect | [src/\_\_tests\_\_](src/__tests__)
 **Back-end** |
