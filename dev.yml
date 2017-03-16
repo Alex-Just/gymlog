@@ -24,13 +24,11 @@ services:
       - POSTGRES_USER=backend
       - USE_DOCKER=yes
     volumes:
-      - .:/app
+      - ./backend:/app
     ports:
       - "8000:8000"
     links:
       - postgres
-
-
 
   pycharm:
     build:
@@ -41,9 +39,18 @@ services:
     environment:
       - POSTGRES_USER=backend
     volumes:
-      - .:/app
+      - ./backend:/app
     links:
       - postgres
 
-
-
+  frontend:
+    build:
+      context: .
+      dockerfile: ./compose/frontend/Dockerfile-dev
+    command: /start-dev.sh
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./frontend:/app
+    environment:
+    - NODE_ENV=dev
