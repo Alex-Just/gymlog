@@ -1,5 +1,4 @@
 from autoslug import AutoSlugField
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -15,9 +14,6 @@ class Program(models.Model):
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        return reverse('programs:detail', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = _('program')
@@ -39,9 +35,6 @@ class Day(models.Model):
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        return reverse('days:detail', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ('ind',)
@@ -68,9 +61,6 @@ class Exercise(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('exercises:detail', kwargs={'slug': self.slug})
-
     class Meta:
         ordering = ('ind',)
         verbose_name = _('exercise')
@@ -88,9 +78,6 @@ class Set(models.Model):
     ind = models.PositiveSmallIntegerField(_('order'))
     reps = models.PositiveSmallIntegerField(_('reps'), null=True, blank=True)
     weight = models.FloatField(_('weight'), null=True, blank=True)
-
-    def get_absolute_url(self):
-        return reverse('sets:detail', kwargs={'id': self.id})
 
     class Meta:
         ordering = ('ind',)

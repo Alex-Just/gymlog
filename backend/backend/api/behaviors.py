@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.exceptions import NotFound
 
 
 class RetrievableByIdOrSlug(viewsets.ModelViewSet):
@@ -10,16 +11,21 @@ class RetrievableByIdOrSlug(viewsets.ModelViewSet):
         except ValueError:
             pk_int = None
 
+        queryset = self.get_queryset()
+
         # Allow to query objects by `id`
         obj = None
         if pk_int:
-            obj = self.queryset.filter(id=pk_int).first()
+            obj = queryset.filter(id=pk_int).first()
 
         # Or by `slug`
         if not obj:
-            obj = self.queryset.filter(slug=pk).first()
+            obj = queryset.filter(slug=pk).first()
 
-        return obj
+        if obj:
+            return obj
+
+        raise NotFound()
 
 
 class RetrievableByIdOrUsernameOrCurrent(viewsets.ModelViewSet):
@@ -34,13 +40,23 @@ class RetrievableByIdOrUsernameOrCurrent(viewsets.ModelViewSet):
         except ValueError:
             pk_int = None
 
+        queryset = self.get_queryset()
+
         # Allow to query Users by `id`
         obj = None
         if pk_int:
-            obj = self.queryset.filter(id=pk_int).first()
+            obj = queryset.filter(id=pk_int).first()
 
         # Or by `username`
         if not obj:
-            obj = self.queryset.filter(username=pk).first()
+            obj = queryset.filter(username=pk).first()
 
-        return obj
+        if obj:
+            return obj
+
+        raise NotFound()
+
+
+class OwnedAndViewedByCurrentUser(viewsets.ModelViewSet):
+    def get_queryset(self):
+        return self.queryset.filter(owner=self.request.user)

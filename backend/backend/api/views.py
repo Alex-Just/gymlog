@@ -1,28 +1,27 @@
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
 
-from .behaviors import RetrievableByIdOrSlug, RetrievableByIdOrUsernameOrCurrent
+from .behaviors import RetrievableByIdOrSlug, RetrievableByIdOrUsernameOrCurrent, OwnedAndViewedByCurrentUser
 from .serializers import ProgramSerializer, UserSerializer
 from ..core.models import Program
 from ..users.models import User
 
 
-class ProgramViewSet(RetrievableByIdOrSlug, viewsets.ModelViewSet):
+class ProgramViewSet(RetrievableByIdOrSlug,
+                     OwnedAndViewedByCurrentUser,
+                     viewsets.ModelViewSet):
     """
-    This endpoint presents Goals.
-    The **owner** of the Goal may update or delete instances of the Goal.
+    This endpoint presents Programs.
+    The **owner** of the Program may update or delete instances of the Program.
     """
     queryset = Program.objects.all()
     serializer_class = ProgramSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get_queryset(self):
-        return Program.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class UserViewSet(RetrievableByIdOrUsernameOrCurrent, viewsets.ReadOnlyModelViewSet):
+class UserViewSet(RetrievableByIdOrUsernameOrCurrent,
+                  viewsets.ReadOnlyModelViewSet):
     """
     This endpoint presents the users in the system.
     """
