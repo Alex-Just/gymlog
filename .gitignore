@@ -83,3 +83,5 @@ npm-debug.log
 
 staticfiles/
 /backend/.cache/
+/frontend/jest/
+*.pem

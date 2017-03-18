@@ -1,0 +1,58 @@
+version: '2'
+
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
+
+services:
+  postgres:
+    image: 320564432827.dkr.ecr.eu-central-1.amazonaws.com/gymlog/postgres
+    mem_limit: 178743680
+    volumes:
+        - postgres_data:/var/lib/postgresql/data
+        - postgres_backup:/backups
+    env_file: .env
+
+  django:
+    image: 320564432827.dkr.ecr.eu-central-1.amazonaws.com/gymlog/django
+    user: django
+    mem_limit: 178743680
+    command: /gunicorn.sh
+    env_file: .env
+    ports:
+      - "0.0.0.0:5000:5000"
+    links:
+      - postgres
+      - redis
+
+#  nginx:
+#    image: 320564432827.dkr.ecr.eu-central-1.amazonaws.com/gymlog/nginx
+#    mem_limit: 178743680
+#    environment:
+#      - MY_DOMAIN_NAME=gymlog.tk
+#    ports:
+#      - "0.0.0.0:80:80"
+#      - "0.0.0.0:443:443"
+#    volumes:
+#      - /etc/letsencrypt:/etc/letsencrypt
+#      - /var/lib/letsencrypt:/var/lib/letsencrypt
+#    links:
+#      - django
+#      - certbot
+#
+#  certbot:
+#    image: quay.io/letsencrypt/letsencrypt
+#    mem_limit: 178743680
+#    command: bash -c "sleep 6 && certbot certonly -n --standalone -d gymlog.tk --text --agree-tos --email AlexJustEmail@gmail.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
+#    volumes:
+#      - /etc/letsencrypt:/etc/letsencrypt
+#      - /var/lib/letsencrypt:/var/lib/letsencrypt
+#    ports:
+#      - "80"
+#      - "443"
+#    environment:
+#      - TERM=xterm
+
+  redis:
+    image: redis:latest
+    mem_limit: 178743680

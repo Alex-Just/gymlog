@@ -1,15 +1,14 @@
-FROM python:3.5
+FROM python:3.6
 
 ENV PYTHONUNBUFFERED 1
 
 # Requirements have to be pulled and installed here, otherwise caching won't work
-COPY ./requirements /requirements
-
+COPY ./backend/requirements /requirements
 RUN pip install -r /requirements/production.txt \
     && groupadd -r django \
     && useradd -r -g django django
 
-COPY . /app
+COPY ./backend /app
 RUN chown -R django /app
 
 COPY ./compose/django/gunicorn.sh /gunicorn.sh
