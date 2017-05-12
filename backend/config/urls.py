@@ -8,6 +8,10 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view()
+
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
@@ -26,6 +30,8 @@ urlpatterns = [
 
     # Include login URLs for the browsable API.
     url(r'^api/', include('backend.api.urls', namespace='api')),
+
+    url(r'^swagger$', schema_view),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

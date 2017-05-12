@@ -44,6 +44,9 @@ DJANGO_APPS = [
     # Useful template tags:
     # 'django.contrib.humanize',
 
+    # A THIRD_PARTY_APP but must be placed here in order to enable `modeltranslation`'s admin integration
+    'modeltranslation',
+
     # Admin
     'django.contrib.admin',
 ]
@@ -53,13 +56,15 @@ THIRD_PARTY_APPS = [
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'rest_framework',  # REST API
+    'haystack',
+    'rest_framework_swagger',
 ]
 
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # custom users app
     'backend.users.apps.UsersConfig',
-    # Your stuff: custom apps go here
+
     'backend.core.apps.CoreConfig',
     'backend.api.apps.ApiConfig',
 ]
@@ -115,10 +120,9 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///backend'),
+    'default': env.db('DATABASE_URL', default='postgres:///gymlog'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -130,6 +134,17 @@ TIME_ZONE = 'UTC'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
+
+
+# This is defined here as a do-nothing function because we can't import
+# django.utils.translation -- that module depends on the settings.
+def gettext_noop(s):
+    return s
+
+LANGUAGES = (
+    ('en', gettext_noop('English')),
+    ('ru', gettext_noop('Russian')),
+)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -270,4 +285,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     )
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'multilingual.elasticsearch_backend.ElasticsearchMultilingualSearchEngine',
+        'URL': 'http://0.0.0.0:9200/',
+        'INDEX_NAME': 'gymlog',
+    },
 }

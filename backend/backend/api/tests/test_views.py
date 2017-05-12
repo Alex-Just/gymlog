@@ -27,22 +27,22 @@ class ProgramTests(APITestCase):
         data = {'title': self.program_title}
 
         return {
-            'response': self.client.post(url, data, format='json'),
+            'resp': self.client.post(url, data, format='json'),
             'url': url,
         }
 
     def test_create_program_by_anonym(self):
-        response = self.create_program()['response']
+        resp = self.create_program()['resp']
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Program.objects.count(), 0)
 
     def test_create_program(self):
         self.client.force_authenticate(user=self.user)
 
-        response = self.create_program()['response']
+        resp = self.create_program()['resp']
 
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Program.objects.count(), 1)
 
         program = Program.objects.get()
@@ -52,10 +52,10 @@ class ProgramTests(APITestCase):
     def test_view_list_by_anonym(self):
         url = reverse('api:program-list')
 
-        response = self.client.get(url)
+        resp = self.client.get(url)
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.assertEqual(response.data, {'detail': 'Authentication credentials were not provided.'})
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.data, {'detail': 'Authentication credentials were not provided.'})
 
     def test_view_my_list_by_another_user(self):
         self.client.force_authenticate(user=self.user)
@@ -65,19 +65,19 @@ class ProgramTests(APITestCase):
         self.client.logout()
         self.client.force_authenticate(user=self.user2)
 
-        response = self.client.get(url)
+        resp = self.client.get(url)
 
-        self.assertEqual(response.data, [])
+        self.assertEqual(resp.data, [])
 
     def test_view_my_list(self):
         self.client.force_authenticate(user=self.user)
 
         url = self.create_program()['url']
 
-        response = self.client.get(url)
-        program = dict(response.data[0])
+        resp = self.client.get(url)
+        program = dict(resp.data[0])
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(program['title'], self.program_title)
         self.assertEqual(program['slug'], self.program_slug)
 
@@ -88,47 +88,47 @@ class ProgramTests(APITestCase):
 
         url = reverse('api:program-detail', kwargs={'pk': 1})
 
-        response = self.client.get(url)
+        resp = self.client.get(url)
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.assertEqual(response.data, {'detail': 'Authentication credentials were not provided.'})
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.data, {'detail': 'Authentication credentials were not provided.'})
 
     def test_view_item_by_another_user(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
         self.client.logout()
         self.client.force_authenticate(user=self.user2)
 
         url = reverse('api:program-detail', kwargs={'pk': item['id']})
 
-        response = self.client.get(url)
+        resp = self.client.get(url)
 
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-        self.assertEqual(response.data, {'detail': 'Not found.'})
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(resp.data, {'detail': 'Not found.'})
 
     def test_view_my_item(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
 
         url = reverse('api:program-detail', kwargs={'pk': item['id']})
 
-        response = self.client.get(url)
-        program = dict(response.data)
+        resp = self.client.get(url)
+        program = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(program['title'], self.program_title)
         self.assertEqual(program['slug'], self.program_slug)
 
     def test_view_my_item_by_slug(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
 
         url = reverse('api:program-detail', kwargs={'pk': item['slug']})
 
-        response = self.client.get(url)
-        program = dict(response.data)
+        resp = self.client.get(url)
+        program = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(program['title'], self.program_title)
         self.assertEqual(program['slug'], self.program_slug)
 
@@ -139,34 +139,34 @@ class ProgramTests(APITestCase):
 
         url = reverse('api:program-detail', kwargs={'pk': 1})
 
-        response = self.client.put(url, data={'title': self.program_title + '2'})
+        resp = self.client.put(url, data={'title': self.program_title + '2'})
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.assertEqual(response.data, {'detail': 'Authentication credentials were not provided.'})
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.data, {'detail': 'Authentication credentials were not provided.'})
 
     def test_update_item_by_another_user(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
         self.client.logout()
         self.client.force_authenticate(user=self.user2)
 
         url = reverse('api:program-detail', kwargs={'pk': item['id']})
 
-        response = self.client.put(url, data={'title': self.program_title + '2'})
+        resp = self.client.put(url, data={'title': self.program_title + '2'})
 
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-        self.assertEqual(response.data, {'detail': 'Not found.'})
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(resp.data, {'detail': 'Not found.'})
 
     def test_update_my_item(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
 
         url = reverse('api:program-detail', kwargs={'pk': item['id']})
 
-        response = self.client.put(url, data={'title': self.program_title + '2'})
-        program = dict(response.data)
+        resp = self.client.put(url, data={'title': self.program_title + '2'})
+        program = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(program['title'], self.program_title + '2')
         self.assertEqual(program['slug'], self.program_slug + '-2')
 
@@ -177,33 +177,33 @@ class ProgramTests(APITestCase):
 
         url = reverse('api:program-detail', kwargs={'pk': 1})
 
-        response = self.client.delete(url)
+        resp = self.client.delete(url)
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.assertEqual(response.data, {'detail': 'Authentication credentials were not provided.'})
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.data, {'detail': 'Authentication credentials were not provided.'})
 
     def test_delete_item_by_another_user(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
         self.client.logout()
         self.client.force_authenticate(user=self.user2)
 
         url = reverse('api:program-detail', kwargs={'pk': item['id']})
 
-        response = self.client.delete(url)
+        resp = self.client.delete(url)
 
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-        self.assertEqual(response.data, {'detail': 'Not found.'})
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(resp.data, {'detail': 'Not found.'})
 
     def test_delete_my_item(self):
         self.client.force_authenticate(user=self.user)
-        item = dict(self.create_program()['response'].data)
+        item = dict(self.create_program()['resp'].data)
 
         url = reverse('api:program-detail', kwargs={'pk': item['id']})
 
-        response = self.client.delete(url)
+        resp = self.client.delete(url)
 
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
 
         with self.assertRaises(Program.DoesNotExist):
             with transaction.atomic():
@@ -225,20 +225,20 @@ class UserTests(APITestCase):
     def test_view_item_by_anonym(self):
         url = reverse('api:user-detail', kwargs={'pk': 1})
 
-        response = self.client.get(url)
+        resp = self.client.get(url)
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.assertEqual(response.data, {'detail': 'Authentication credentials were not provided.'})
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(resp.data, {'detail': 'Authentication credentials were not provided.'})
 
     def test_view_item_by_another_user(self):
         self.client.force_authenticate(user=self.user2)
 
         url = reverse('api:user-detail', kwargs={'pk': self.user.id})
 
-        response = self.client.get(url)
-        user = dict(response.data)
+        resp = self.client.get(url)
+        user = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(user['username'], self.user.username)
 
     def test_view_my_item(self):
@@ -246,10 +246,10 @@ class UserTests(APITestCase):
 
         url = reverse('api:user-detail', kwargs={'pk': self.user.id})
 
-        response = self.client.get(url)
-        user = dict(response.data)
+        resp = self.client.get(url)
+        user = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(user['username'], self.user.username)
 
     def test_view_non_existing_item(self):
@@ -257,10 +257,10 @@ class UserTests(APITestCase):
 
         url = reverse('api:user-detail', kwargs={'pk': -self.user.id})
 
-        response = self.client.get(url)
-        user = dict(response.data)
+        resp = self.client.get(url)
+        user = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(user, {'detail': 'Not found.'})
 
     def test_view_my_item_by_current_query(self):
@@ -268,10 +268,10 @@ class UserTests(APITestCase):
 
         url = reverse('api:user-detail', kwargs={'pk': 'current'})
 
-        response = self.client.get(url)
-        user = dict(response.data)
+        resp = self.client.get(url)
+        user = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(user['username'], self.user.username)
 
     def test_view_my_item_by_username(self):
@@ -279,8 +279,8 @@ class UserTests(APITestCase):
 
         url = reverse('api:user-detail', kwargs={'pk': self.user.username})
 
-        response = self.client.get(url)
-        user = dict(response.data)
+        resp = self.client.get(url)
+        user = dict(resp.data)
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(user['username'], self.user.username)

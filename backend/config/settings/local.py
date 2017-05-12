@@ -50,7 +50,7 @@ MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
 INSTALLED_APPS += ['debug_toolbar', ]
 
 INTERNAL_IPS = ['127.0.0.1', '10.0.2.2', ]
-ALLOWED_HOSTS = ('0.0.0.0',)
+ALLOWED_HOSTS = '*'
 
 # tricks to have debug toolbar when developing with docker
 if os.environ.get('USE_DOCKER') == 'yes':
@@ -62,6 +62,7 @@ DEBUG_TOOLBAR_CONFIG = {
         'debug_toolbar.panels.redirects.RedirectsPanel',
     ],
     'SHOW_TEMPLATE_CONTEXT': True,
+    'SHOW_TOOLBAR_CALLBACK': lambda x: True,
 }
 
 # django-extensions

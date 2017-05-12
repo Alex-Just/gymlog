@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-'''
+"""
 Test settings
 
 - Used to run tests fast on the continuous integration server and locally
-'''
+"""
 
 from .base import *  # noqa
-
 
 # DEBUG
 # ------------------------------------------------------------------------------
@@ -43,7 +41,6 @@ CACHES = {
 # ------------------------------------------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-
 # PASSWORD HASHING
 # ------------------------------------------------------------------------------
 # Use fast password hasher so tests run faster
@@ -60,3 +57,6 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
         'django.template.loaders.app_directories.Loader',
     ], ],
 ]
+
+# Use in0memory database
+DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
