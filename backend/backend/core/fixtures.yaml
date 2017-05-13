@@ -1,0 +1,99 @@
+- model: core.program
+  pk: 1
+  fields: {owner: 2, title: My default program, slug: My-default-program}
+- model: core.day
+  pk: 1
+  fields: {program: 1, ind: 1, title: Legs, slug: Legs}
+- model: core.day
+  pk: 2
+  fields: {program: 1, ind: 2, title: Chest, slug: Chest}
+- model: core.exercise
+  pk: 1
+  fields: {
+    title: Squat,
+    note: 'Squats are king because they''''re simply the most
+      challenging leg movement you can do, especially when loaded appropriately. They
+      work all the lower-body musculature (we''''re counting glutes) and have been
+      shown to spike muscle-building hormone release. In fact, we even know that squatting
+      before doing curls has been shown to significantly improve arm strength!',
+    video: 'https://www.youtube.com/embed/t2b8UdqmlFs?showinfo=0'
+  }
+- model: core.exercise
+  pk: 2
+  fields: {
+    title: Olympic Lifts,
+    note: 'Movements like snatches and power cleans take
+      some serious dedication and technique to master, but they can be unrivaled when
+      you are trying to improve jumping power or squat strength. In fact, one scientific
+      study found a nearly 18-percent greater improvement in squat 1RM after following
+      an Olympic-based program compared to a traditional powerlifting program.',
+    video: 'https://www.youtube.com/embed/FjQr2vW30qw?showinfo=0'
+  }
+- model: core.exercise
+  pk: 3
+  fields: {
+    title: One-Arm Dumbbell Press,
+    note: 'This is a nice way to address any
+      strength imbalances between one side and the other. It also adds an intense
+      core-stability (rotary stability) component as well, as you have to fire all
+      you have to not fall off the bench',
+    video: 'https://www.youtube.com/embed/wgERIoDRlUE?showinfo=0'
+  }
+- model: core.exercise
+  pk: 4
+  fields: {
+    title: Dumbbell "Reverse Batwing" Press,
+    note: "This variation is the counterpoint
+      to Dan John's batwing row exercise. You hold one dumbbell a few inches above
+      your chest as you perform all your repetitions on the other side.\r\n\r\nSwitch,
+      and repeat on the opposite side. Ouch.",
+    video: 'https://www.youtube.com/embed/vsY2wEdl6P4?showinfo=0'
+  }
+- model: core.dayexercise
+  pk: 1
+  fields: {day: 1, ind: 1, exercise: 1, slug: Squat}
+- model: core.dayexercise
+  pk: 2
+  fields: {day: 1, ind: 2, exercise: 2, slug: Olympic-Lifts}
+- model: core.dayexercise
+  pk: 3
+  fields: {day: 2, ind: 1, exercise: 3, slug: One-Arm-Dumbbell-Press}
+- model: core.dayexercise
+  pk: 4
+  fields: {day: 2, ind: 2, exercise: 4, slug: Dumbbell-Reverse-Batwing-Press}
+- model: core.set
+  pk: 1
+  fields: {day_exercise: 1, ind: 1, reps: 20, weight: 10.0}
+- model: core.set
+  pk: 2
+  fields: {day_exercise: 1, ind: 2, reps: 15, weight: 10.0}
+- model: core.set
+  pk: 3
+  fields: {day_exercise: 1, ind: 3, reps: 10, weight: 10.0}
+- model: core.set
+  pk: 4
+  fields: {day_exercise: 2, ind: 1, reps: 20, weight: 10.0}
+- model: core.set
+  pk: 5
+  fields: {day_exercise: 2, ind: 2, reps: 15, weight: 10.0}
+- model: core.set
+  pk: 6
+  fields: {day_exercise: 2, ind: 3, reps: 10, weight: 10.0}
+- model: core.set
+  pk: 7
+  fields: {day_exercise: 3, ind: 1, reps: 20, weight: 10.0}
+- model: core.set
+  pk: 8
+  fields: {day_exercise: 3, ind: 2, reps: 15, weight: 10.0}
+- model: core.set
+  pk: 9
+  fields: {day_exercise: 3, ind: 3, reps: 10, weight: 10.0}
+- model: core.set
+  pk: 10
+  fields: {day_exercise: 4, ind: 1, reps: 20, weight: 10.0}
+- model: core.set
+  pk: 11
+  fields: {day_exercise: 4, ind: 2, reps: 15, weight: 10.0}
+- model: core.set
+  pk: 12
+  fields: {day_exercise: 4, ind: 3, reps: 5, weight: 10.0}

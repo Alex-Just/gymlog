@@ -1,0 +1,32 @@
+- model: users.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$36000$uiZIxIhgSuR8$BYvJm3rIg2IxKWjkOmgyTvINe/lXHsjtRn08s7CNE9w=
+    last_login: '2017-05-13 08:26:47+00:00'
+    is_superuser: true
+    username: admin
+    first_name: ''
+    last_name: ''
+    email: h7h2vc@gmail.com
+    is_staff: true
+    is_active: true
+    date_joined: '2017-05-06 11:53:36+00:00'
+    name: ''
+    groups: []
+    user_permissions: []
+- model: users.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$36000$JLCFzuKcecZ9$6CGtDn4aV3rVxJrIRIb1EJqYy3a/RteiBv/fRa/THGo=
+    last_login: '2017-05-06 12:47:16+00:00'
+    is_superuser: false
+    username: testUser
+    first_name: ''
+    last_name: ''
+    email: 2997171@gmail.com
+    is_staff: false
+    is_active: true
+    date_joined: '2017-05-06 12:44:18+00:00'
+    name: ''
+    groups: []
+    user_permissions: []

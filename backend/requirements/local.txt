@@ -19,3 +19,4 @@ pytest-django
 pytest-sugar
 
 django-rest-swagger
+pyyaml

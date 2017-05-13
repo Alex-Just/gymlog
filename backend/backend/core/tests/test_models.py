@@ -37,12 +37,6 @@ class TestProgram(TestCase):
     def test_title_no_duplicates_between_users(self):
         Program.objects.create(owner=self.user2, title=self.program_title)
 
-        # def test_get_absolute_url(self):
-        #     self.assertEqual(
-        #         self.program.get_absolute_url(),
-        #         '/programs/my-program/'
-        #     )
-
 
 class TestDay(TestCase):
     def setUp(self):
@@ -94,12 +88,6 @@ class TestDay(TestCase):
         with self.assertRaises(IntegrityError):
             with transaction.atomic():
                 Day.objects.create(program=self.program, title=self.day_title, ind=2)
-
-                # def test_get_absolute_url(self):
-                #     self.assertEqual(
-                #         self.program.get_absolute_url(),
-                #         '/programs/my-program/'
-                #     )
 
 
 class TestExercise(TestCase):
@@ -156,12 +144,6 @@ class TestExercise(TestCase):
             with transaction.atomic():
                 Exercise.objects.create(day=self.day, title=self.exercise_title, ind=2)
 
-                # def test_get_absolute_url(self):
-                #     self.assertEqual(
-                #         self.program.get_absolute_url(),
-                #         '/programs/my-program/'
-                #     )
-
 
 class TestSet(TestCase):
     def setUp(self):
@@ -196,9 +178,3 @@ class TestSet(TestCase):
 
     def test_ind_no_duplicates_between_users(self):
         Set.objects.create(exercise=self.not_my_exercise, ind=1)
-
-        # def test_get_absolute_url(self):
-        #     self.assertEqual(
-        #         self.program.get_absolute_url(),
-        #         '/programs/my-program/'
-        #     )

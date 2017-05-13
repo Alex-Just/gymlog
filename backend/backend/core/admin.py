@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 from django.contrib import admin
 
-from .models import Program, Day, Exercise, Set
+from .models import Program, Day, Exercise, Set, DayExercise
 
 
 @admin.register(Program)
@@ -25,6 +22,12 @@ class DayAdmin(admin.ModelAdmin):
 
 @admin.register(Exercise)
 class ExerciseAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title',)
+
+
+@admin.register(DayExercise)
+class DayExerciseAdmin(admin.ModelAdmin):
     def get_owner(self, obj):
         return obj.day.program.owner
 
@@ -35,26 +38,31 @@ class ExerciseAdmin(admin.ModelAdmin):
 
     get_program.short_description = 'Program'
 
-    list_display = ('title', 'slug', 'ind', 'day', 'get_program', 'get_owner')
-    search_fields = ('title', 'day', 'program', 'owner__username')
+    def get_exercise(self, obj):
+        return obj.exercise
+
+    get_exercise.short_description = 'Exercise'
+
+    list_display = ('slug', 'ind', 'day', 'get_exercise', 'get_program', 'get_owner')
+    search_fields = ('day', 'program', 'owner__username')
 
 
 @admin.register(Set)
 class SetAdmin(admin.ModelAdmin):
     def get_owner(self, obj):
-        return obj.exercise.day.program.owner
+        return obj.day_exercise.day.program.owner
 
     get_owner.short_description = 'Owner'
 
     def get_program(self, obj):
-        return obj.exercise.day.program
+        return obj.day_exercise.day.program
 
     get_program.short_description = 'Program'
 
     def get_day(self, obj):
-        return obj.exercise.day
+        return obj.day_exercise.day
 
     get_day.short_description = 'Day'
 
-    list_display = ('ind', 'exercise', 'get_day', 'get_program', 'get_owner')
+    list_display = ('ind', 'reps', 'weight', 'day_exercise', 'get_day', 'get_program', 'get_owner')
     search_fields = ('day', 'program', 'owner__username')

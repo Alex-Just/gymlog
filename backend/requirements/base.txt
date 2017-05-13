@@ -40,3 +40,6 @@ djangorestframework
 django-haystack
 django-modeltranslation
 django-multilingual-search
+
+# This package provides routers and fields to create nested resources in the Django Rest Framework
+drf-nested-routers
